@@ -88,6 +88,7 @@
     grid-template-columns: repeat(5, 1fr);
     border-top: solid 1px rgba(255, 255, 255, 0.377);
     justify-content: space-evenly;
+    grid-gap: 5px;
 
     h1 {
         font-size: 40px;
