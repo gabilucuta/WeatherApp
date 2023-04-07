@@ -1,0 +1,39 @@
+p{
+    font-size: 25px;    
+    padding: 10px;
+}
+
+.hour {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+img {
+     height: 80px;
+}
+
+.chip {
+    border: solid 1px white;
+    border-radius: 60px;
+    background-color: var(--background-chip);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;   
+    animation: 1.5s fadeInUp;
+}
+
+@keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20%);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }

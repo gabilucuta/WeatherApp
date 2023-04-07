@@ -1,0 +1,12 @@
+<div class="card">
+    <h2>{{ day?.date | date:'MMMM d' }}</h2>
+    <p class="temperature">
+        {{day.day.avgtemp_c | number: '1.0-0'}}°
+    </p>
+    <img [src]="day?.day?.condition?.icon" alt="Weather icon">
+    <div class="lows">
+        <p>High: {{ day?.day?.maxtemp_c }}°</p>
+        <p>Low: {{ day?.day?.mintemp_c }}°</p>
+    </div>
+    <p class="condition">{{ day?.day?.condition?.text }}</p>
+</div>

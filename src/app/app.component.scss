@@ -1,0 +1,231 @@
+.mainContainer {
+    padding: 5% 15%;
+    background: var(--background-secondary);
+    background: var(--background-default);
+    animation: fadeIn 1s;
+}
+
+.text {
+    color: var(--background-light);
+}
+
+.searchBox {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    color: #ffffffc7;
+    position: sticky;
+    align-content: center;
+}
+
+.search-full-width {
+    width: 700px;
+    height: auto;
+}
+
+.temperature {
+    font-size: 80px;
+    padding: 40px;
+}
+
+.mdc-text-field--filled {
+    background: none;
+}
+
+.wrapper {
+    padding: 5% 0%;
+    display: flex;
+
+    .hourlyForecast {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        grid-gap: 20px;
+    }
+}
+
+
+.hoursCotainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.image {
+    display: flex;
+    align-items: center;
+
+    h1 {
+        padding: 10px
+    }
+}
+
+.location {
+    font-size: 30px;
+    line-height: 30px;
+
+    img {
+        margin-right: 15px;
+    }
+}
+
+.currentWeather {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.section {
+    padding-top: 5%;
+
+    h1 {
+        font-size: 30px;
+    }
+
+}
+
+.conatinerDyas {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    border-top: solid 1px rgba(255, 255, 255, 0.377);
+    justify-content: space-evenly;
+
+    h1 {
+        font-size: 40px;
+        text-transform: uppercase;
+    }
+}
+
+.containerDetails {
+    padding-top: 5%;
+    border-top: solid 1px rgba(255, 255, 255, 0.377);
+    justify-content: space-evenly;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 30px;
+}
+
+.card {
+    display: flex;
+    text-align: center;
+    justify-content: space-between;
+    text-align: left;
+    padding: 30px;
+    background-color: var(--background-cards);
+    color: rgb(66, 81, 110);
+
+    p {
+        font-size: 30px;
+        font-weight: 500;
+    }
+
+    h1 {
+        text-transform: uppercase;
+        font-weight: 300;
+    }
+}
+
+button {
+    padding: 18px 67px;
+    border-radius: 40px;
+    cursor: pointer;
+    background-color: var(--background-button);
+    border: none;
+}
+
+button:hover {
+    color: var(--primary-default);
+    background-color: var(--background-light);
+}
+
+.functionButton {
+    margin-top: 10px;
+}
+
+@media screen and (max-width: 1700px) {
+    .searchBox {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .wrapper {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .functionButton {
+        margin-bottom: 30px;
+    }
+
+    .containerDetails {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .conatinerDyas {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media screen and (max-width: 1600px) {
+    .searchBox {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .wrapper {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .functionButton {
+        margin-bottom: 30px;
+    }
+
+    .containerDetails {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .conatinerDyas {
+        align-items: center;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .containerDetails {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .conatinerDyas {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .wrapper {
+        .hourlyForecast {
+            grid-template-columns: repeat(4, 1fr);
+        }
+    }
+
+    .search-full-width {
+        width: 400px;
+    }
+
+    .mainContainer {
+        padding: 5% 10%;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .wrapper {
+        .hourlyForecast {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    .search-full-width {
+        width: 300px;
+    }
+}

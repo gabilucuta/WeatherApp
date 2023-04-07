@@ -1,0 +1,39 @@
+.card {
+    width: 200px;
+    background-color: var(--background-cards);
+    padding: 30px;
+    color: rgb(66, 81, 110);
+    align-items: center;
+    text-align: center;
+    margin: 10% 0%;
+
+    p {
+        font-size: 15px;
+    }
+
+    h2 {
+        font-size: 30px;
+        font-weight: 600;
+    }
+
+    .condition {
+        font-size: 20px;
+        font-weight: 600;
+    }
+
+    img {
+        height: 100px;
+    }
+
+    .lows {
+        display: flex;
+        justify-content: space-between;
+        margin: 10px 0px;
+    }
+
+    .temperature {
+        font-weight: 600;
+        font-size: 30px;
+    }
+
+}

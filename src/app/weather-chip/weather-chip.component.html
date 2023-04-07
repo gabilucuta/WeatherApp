@@ -1,0 +1,7 @@
+<div class="container text">
+    <p>{{hour?.time | date:'h a'}}</p>
+    <div class="chip ">
+        <img [src]="hour?.condition?.icon" alt="Weather icon">
+        <p class="hour">{{hour?.temp_c | number: '1.0-0'}}°</p>
+    </div>
+</div>
