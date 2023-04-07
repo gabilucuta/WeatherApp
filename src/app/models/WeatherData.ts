@@ -8,8 +8,7 @@ export interface Location {
   name: string;
   region: string;
   country: string;
-  localtime : Date;
-  favourite : boolean;
+  localtime: Date;
 }
 
 export interface Current {
@@ -56,4 +55,8 @@ export interface HourlyForecast {
     text: string;
     icon: string;
   };
+}
+
+export interface LocationResponse {
+  city: string;
 }

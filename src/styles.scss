@@ -1,76 +1,73 @@
 :root {
-    
+  --background-default: linear-gradient(180deg, rgba(145, 221, 161, 1) 0%, rgba(63, 196, 218, 1) 48%);
+  --background-secondary: rgb(145, 221, 161);
+  --background-cards: #ffff;
+  --background-light: rgb(66, 81, 110);
+  --background-chip: #ffffffc7;
 
-    --background-default: linear-gradient(180deg, rgba(145,221,161,1) 0%, rgba(63,196,218,1) 48%);
-    --background-secondary: rgb(145,221,161);
-    --background-cards: #ffff;
-    --background-light: rgb(66, 81, 110);
-    --background-chip: #ffffffc7;
-
-    --primary-default: #ffff;
-
-    --background-button: #ffff;
+  --primary-default: #ffff;
+  --background-button: #ffff;
 }
-
 
 html,
 body {
-     .text {
-        color: var(--background-light);
-     }
+  .text {
+    color: var(--background-light);
+  }
 
-     p {
-        animation: 1.5s fadeInLeft;
+  p {
+    animation: 1.5s fadeInLeft;
 
-     }
+  }
 
-     h1,h2 {
-        animation : 1.5s fadeInRight;
-     }
+  h1,
+  h2 {
+    animation: 1.5s fadeInRight;
+  }
 
-     img {
-        animation: 1.5s fadeInTop;
+  img {
+    animation: 1.5s fadeInTop;
 
-     }
+  }
 }
 
 body {
-    margin: 0;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
 @keyframes fadeInLeft {
-    from {
-      opacity: 0;
-      transform: translateY(-70%);
-    }
-
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  from {
+    opacity: 0;
+    transform: translateY(-70%);
   }
 
-  @keyframes fadeInRight {
-    from {
-      opacity: 0;
-      transform: translateX(-70%);
-    }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(-70%);
   }
 
-  @keyframes fadeInTop {
-    from {
-      opacity: 0;
-      transform: translateX(80%);
-    }
-
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
+}
+
+@keyframes fadeInTop {
+  from {
+    opacity: 0;
+    transform: translateX(80%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

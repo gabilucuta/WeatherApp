@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { CitiesService } from './services/cities.service';
-import { delay, empty } from 'rxjs';
+import { delay } from 'rxjs';
 import { WeatherService } from './services/weather.service';
 import { HourlyForecast, WeatherData } from './models/WeatherData';
 import { ThemeService } from "src/app/services/theme.service";
@@ -27,21 +27,20 @@ export class AppComponent implements OnInit {
 
   hourlyForecast?: HourlyForecast[] = [];
   cities?: any;
-  city: string = "";
+  city: string = "Oradea";
+  latitude: number = 0;
+  longitude: number = 0;
   date: Date = new Date();
-  lat: number = 0;
-  lng: number = 0;
+
+  location: any;
+  locationJs: any;
 
   constructor(private weatherService: WeatherService,
     private citiesService: CitiesService,
     private themeService: ThemeService) { }
 
-  async ngOnInit() {
-    this.getCities('a');
-    this.getLocation();
-
-    const locationData = await this.weatherService.getLocationData(this.lat,this.lng);
-    this.city = locationData.location.name;
+  ngOnInit(): void {
+    this.getCities('EU');
     this.getWeather();
 
     for (let index = 1; index <= 9; index++) {
@@ -73,7 +72,6 @@ export class AppComponent implements OnInit {
         })).filter((item) => item.timeAsDate > startDate && item.timeAsDate < endDate);
       }
     );
-
   }
 
   getCities(cityName: string) {
@@ -143,18 +141,5 @@ export class AppComponent implements OnInit {
         })).filter((item) => item.timeAsDate > startDate && item.timeAsDate < endDate);
       }
     );
-  }
-
-  getLocation() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        if (position) {
-          console.log("Latitude: " + position.coords.latitude +
-            "Longitude: " + position.coords.longitude);
-          this.lat = position.coords.latitude;
-          this.lng = position.coords.longitude;
-        }
-      })
-    }
   }
 }

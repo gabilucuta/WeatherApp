@@ -1,5 +1,5 @@
-import { Component,Input } from '@angular/core';
-import { HourlyForecast} from '../models/WeatherData';
+import { Component, Input } from '@angular/core';
+import { HourlyForecast } from '../models/WeatherData';
 
 @Component({
   selector: 'app-weather-chip',
@@ -8,5 +8,5 @@ import { HourlyForecast} from '../models/WeatherData';
 })
 export class WeatherChipComponent {
 
-  @Input() hour : HourlyForecast | undefined ;
+  @Input() hour: HourlyForecast | undefined;
 }

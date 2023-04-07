@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { WeatherData } from '../models/WeatherData';
+import { Observable, map } from 'rxjs';
+import { LocationResponse, WeatherData } from '../models/WeatherData';
 
 @Injectable({
   providedIn: 'root'
@@ -27,13 +27,13 @@ export class WeatherService {
 
   }
 
-  getWeatherForecast(location: string, numberOfDays : number): Observable<WeatherData> {
+  getWeatherForecast(location: string, numberOfDays: number): Observable<WeatherData> {
     const url = `${this.apiUrl}/forecast.json?q=${location}&days=${numberOfDays}`;
     const headers = this.getHeaders();
     return this.http.get<WeatherData>(url, { headers });
   }
 
-  getWeatherForecastHourly(location: string, date: Date, numberOfDays : number): Observable<WeatherData> {
+  getWeatherForecastHourly(location: string, date: Date, numberOfDays: number): Observable<WeatherData> {
     const currentDate = new Date(date);
 
     const currentTimestamp = Math.floor(currentDate.getTime() / 1000);
@@ -44,9 +44,12 @@ export class WeatherService {
     return this.http.get<WeatherData>(url, { headers });
   }
 
-  getLocationData(latitude: number, longitude: number): Promise<any> {
-    const url = `https://weatherapi-com.p.rapidapi.com/timezone.json?q=${latitude},${longitude}`;
-    const headers = this.getHeaders();
-    return this.http.get<WeatherData>(url, { headers }).toPromise();
+  getLocation() {
+    return this.http.get<LocationResponse>('https://ipapi.co/json/')
+      .pipe(
+        map(response => response.city)
+      );
   }
+
+
 }
