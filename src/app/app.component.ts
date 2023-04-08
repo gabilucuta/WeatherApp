@@ -4,7 +4,7 @@ import { CitiesService } from './services/cities.service';
 import { delay } from 'rxjs';
 import { WeatherService } from './services/weather.service';
 import { HourlyForecast, WeatherData } from './models/WeatherData';
-import { ThemeService } from "src/app/services/theme.service";
+import { ThemeService } from './services/theme.service';
 
 @Component({
   selector: 'app-root',
