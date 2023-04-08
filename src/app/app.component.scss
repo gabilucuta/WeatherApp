@@ -3,6 +3,7 @@
     background: var(--background-secondary);
     background: var(--background-default);
     animation: fadeIn 1s;
+    transition: all 1s;
 }
 
 .text {
@@ -80,7 +81,6 @@
     h1 {
         font-size: 30px;
     }
-
 }
 
 .conatinerDyas {

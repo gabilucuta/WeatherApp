@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
-import { LocationResponse, WeatherData } from '../models/WeatherData';
+import { WeatherData } from '../models/WeatherData';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +24,6 @@ export class WeatherService {
     const url = `${this.apiUrl}/current.json?q=${location}`;
     const headers = this.getHeaders();
     return this.http.get<WeatherData>(url, { headers });
-
   }
 
   getWeatherForecast(location: string, numberOfDays: number): Observable<WeatherData> {
@@ -35,21 +34,10 @@ export class WeatherService {
 
   getWeatherForecastHourly(location: string, date: Date, numberOfDays: number): Observable<WeatherData> {
     const currentDate = new Date(date);
-
     const currentTimestamp = Math.floor(currentDate.getTime() / 1000);
     const nextHoursTimestamp = currentTimestamp + (numberOfDays * 3600);
-
     const url = `${this.apiUrl}/forecast.json?q=${location}&dt=${nextHoursTimestamp}&hourly=${numberOfDays}`;
     const headers = this.getHeaders();
     return this.http.get<WeatherData>(url, { headers });
   }
-
-  getLocation() {
-    return this.http.get<LocationResponse>('https://ipapi.co/json/')
-      .pipe(
-        map(response => response.city)
-      );
-  }
-
-
 }

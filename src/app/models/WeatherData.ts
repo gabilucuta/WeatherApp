@@ -56,7 +56,3 @@ export interface HourlyForecast {
     icon: string;
   };
 }
-
-export interface LocationResponse {
-  city: string;
-}

@@ -13,27 +13,22 @@ import { ThemeService } from "src/app/services/theme.service";
 })
 export class AppComponent implements OnInit {
   myControl = new FormControl('');
+  date: Date = new Date();
+
   currentWeather?: WeatherData;
   forecastDaily?: WeatherData;
 
   daysAvaliable: number[] = [];
-  numberOfDays = 5;
   hoursAvaliable: number[] = [];
-
-
-  numberOfHours = 5;
   favourites: string[] = [];
-  valid: boolean = false;
-
   hourlyForecast?: HourlyForecast[] = [];
-  cities?: any;
-  city: string = "Oradea";
-  latitude: number = 0;
-  longitude: number = 0;
-  date: Date = new Date();
 
-  location: any;
-  locationJs: any;
+  numberOfDays = 5;
+  numberOfHours = 5;
+  valid: boolean = false;
+  cities?: any;
+  city: string = "";
+  errorMessage = ""
 
   constructor(private weatherService: WeatherService,
     private citiesService: CitiesService,
@@ -41,28 +36,23 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCities('EU');
-    this.getWeather();
 
-    for (let index = 1; index <= 9; index++) {
-      this.hoursAvaliable.push(index);
-    }
-
-    for (let index = 1; index <= 5; index++) {
-      this.daysAvaliable.push(index);
-    }
+    this.getLocation();
+    this.getArrays();
   }
 
-  getWeather() {
-    this.weatherService.getCurrentWeather(this.city)
-      .subscribe(data => this.currentWeather = data);
+  getWeather(cityName: string) {
+    this.weatherService.getCurrentWeather(cityName)
+      .subscribe(data => this.currentWeather = data,
+        error => alert('Error getting current weather, choose another city !'));
 
     if (this.currentWeather)
       this.date = this.currentWeather.location.localtime;
 
-    this.weatherService.getWeatherForecast(this.city, this.numberOfDays)
+    this.weatherService.getWeatherForecast(cityName, this.numberOfDays)
       .subscribe(data => this.forecastDaily = data);
 
-    this.weatherService.getWeatherForecastHourly(this.city, this.date, this.numberOfHours).subscribe(
+    this.weatherService.getWeatherForecastHourly(cityName, this.date, this.numberOfHours).subscribe(
       (data) => {
         const startDate = new Date(`${this.date} UTC`);
         const endDate = new Date(startDate.getTime() + this.numberOfHours * 60 * 60 * 1000);
@@ -103,7 +93,6 @@ export class AppComponent implements OnInit {
         this.favourites.splice(index, 1);
       }
     }
-
     if (this.favourites.length == 0)
       this.valid = false;
   }
@@ -111,7 +100,7 @@ export class AppComponent implements OnInit {
   onSelect(selectedCity: string) {
     if (this.currentWeather)
       this.city = selectedCity;
-    this.getWeather();
+    this.getWeather(this.city);
   }
 
   checkFavourites() {
@@ -119,7 +108,6 @@ export class AppComponent implements OnInit {
       if (this.favourites.includes(this.currentWeather.location.name))
         return true
       else return false
-
     return false
   }
 
@@ -141,5 +129,37 @@ export class AppComponent implements OnInit {
         })).filter((item) => item.timeAsDate > startDate && item.timeAsDate < endDate);
       }
     );
+  }
+
+  getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        position => {
+          const lat = position.coords.latitude;
+          const lng = position.coords.longitude;
+          const apiUrl = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lng}&localityLanguage=en`;
+          fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+              this.city = data.city;
+              this.getWeather(this.city);
+            });
+        },
+        error => {
+          this.city = 'Oradea';
+          this.getWeather(this.city)
+        }
+      );
+    }
+  }
+
+  getArrays() {
+    for (let index = 1; index <= 8; index++) {
+      this.hoursAvaliable.push(index);
+    }
+
+    for (let index = 1; index <= 5; index++) {
+      this.daysAvaliable.push(index);
+    }
   }
 }

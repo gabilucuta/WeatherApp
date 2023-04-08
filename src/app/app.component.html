@@ -7,9 +7,9 @@
         <mat-label>Search City</mat-label>
         <input type="text" placeholder="e.g Oradea" aria-label="Search City" [(ngModel)]="city" matInput
           [formControl]="myControl" [matAutocomplete]="auto" (keypress)="getCities(city)">
-        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="getWeather()">
-          <mat-option *ngFor="let option of cities" [value]="option.value">
-            {{option.value}}
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="getWeather(city)">
+          <mat-option *ngFor="let city of cities" [value]="city.value">
+            {{city.value}}
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>
@@ -25,7 +25,7 @@
       </mat-form-field>
     </div>
     <div class="button">
-      <button (click)="toggleTheme()">Change Mode</button>
+      <button (click)="toggleTheme()">Change Theme</button>
     </div>
   </div>
 
@@ -54,7 +54,7 @@
     <div class="hoursCotainer">
       <div class="favourites">
         <mat-form-field appearance="fill">
-          <mat-label>Number Of Hours</mat-label>
+          <mat-label>Number of hours</mat-label>
           <mat-select [(ngModel)]="numberOfHours" (selectionChange)="updateHours(numberOfHours)">
             <mat-option *ngFor="let number of hoursAvaliable" [value]="number">
               {{number}}
@@ -153,7 +153,7 @@
     <h1 class="text">Daily Weather Forecast</h1>
     <div>
       <mat-form-field appearance="fill">
-        <mat-label>Number Of Days</mat-label>
+        <mat-label>Number of days</mat-label>
         <mat-select [(ngModel)]="numberOfDays" (selectionChange)="updateDays(numberOfDays)">
           <mat-option *ngFor="let day of daysAvaliable" [value]="day">
             {{day}}

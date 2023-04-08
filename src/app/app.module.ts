@@ -12,6 +12,7 @@ import { MatInputModule } from '@angular/material/input';
 import { WeatherChipComponent } from './weather-chip/weather-chip.component';
 import { DayCardComponent } from './day-card/day-card.component';
 import { MatSelectModule } from '@angular/material/select';
+import { NgxGeoCoordinatesInfoModule } from 'ngx-geo-info-angular';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { MatSelectModule } from '@angular/material/select';
     FormsModule,
     HttpClientModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    NgxGeoCoordinatesInfoModule
   ],
   providers: [],
   bootstrap: [AppComponent]
